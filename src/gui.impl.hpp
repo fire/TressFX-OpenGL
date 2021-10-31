@@ -2,7 +2,6 @@
 #include "../libs/imgui/imgui_impl_sdl.h"
 #include "../libs/imgui/imgui_impl_opengl3.h"
 #include "gl-tfx/print_me.hpp"
-#define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/string_cast.hpp"
 #include "glm/gtx/polar_coordinates.hpp"
 
