@@ -29,6 +29,7 @@ static void draw_wind(GlobalState &, const Shader &, glm::vec4);
 static void draw_debug_capsules(GlobalState &, const Shader &,
                                 const Geometry &);
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 int main(int argc, char *argv[]) {
   logger::Log::ReportingLevel = logger::Error;
   GlobalState state;
