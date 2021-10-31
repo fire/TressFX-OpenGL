@@ -8,9 +8,8 @@ Direct port of AMD's TressFX hair/fur rendering and simulation technology to Ope
 
 **webms** (refresh with shift a couple of times if it says that webm is corrupted - github does not like this kind of content):
 
-  * [higher res of gif above](https://raw.githubusercontent.com/Scthe/scthe.github.io/tressfx-webm/images/2018-08-09-tressfx-opengl/1_360.webm)
-  * [playing with wind strength](https://raw.githubusercontent.com/Scthe/scthe.github.io/tressfx-webm/images/2018-08-09-tressfx-opengl/2_wind.webm)
-
+  + [higher res of gif above](https://raw.githubusercontent.com/Scthe/scthe.github.io/tressfx-webm/images/2018-08-09-tressfx-opengl/1_360.webm)
+  + [playing with wind strength](https://raw.githubusercontent.com/Scthe/scthe.github.io/tressfx-webm/images/2018-08-09-tressfx-opengl/2_wind.webm)
 
 ## What is this?
 
@@ -30,8 +29,6 @@ Due to time constraints following techniques are not yet implemented:
 
 There might be still a few bugs that I will hopefully get rid off when I have a little bit more spare time.
 
-
-
 ## Usage
 
 Each build step has been automated with scripts (found in [bin](bin) directory).
@@ -41,33 +38,30 @@ Each build step has been automated with scripts (found in [bin](bin) directory).
 
 2. Generate shaders. I've written simple python script that processes .glsl files for `#pragma include "xxx.glsl"` and textually replaces this line with content of the file. You can even do this by hand. Script: [build_glsl.py](bin/build_glsl.py). At the end of this step You should have following files:
 
-    * src\shaders\generated\gl-tfx\ppll_build.frag.glsl
-    * src\shaders\generated\gl-tfx\ppll_build.vert.glsl
-    * src\shaders\generated\gl-tfx\ppll_resolve.frag.glsl
-    * src\shaders\generated\gl-tfx\ppll_resolve.vert.glsl
-    * src\shaders\generated\gl-tfx\sim0_IntegrationAndGlobalShapeConstraints.comp.glsl
-    * src\shaders\generated\gl-tfx\sim1_VelocityShockPropagation.comp.glsl
-    * src\shaders\generated\gl-tfx\sim2_LocalShapeConstraints.comp.glsl
-    * src\shaders\generated\gl-tfx\sim3_LengthConstraintsWindAndCollision.comp.glsl
-    * src\shaders\generated\gl-tfx\sim3_TMP_LengthConstraintsWindAndCollision.comp.glsl
-    * src\shaders\generated\gl-tfx\sim4_UpdateFollowHairVertices.comp.glsl
-
-    PS. `build_glsl.py` also calls `bin\glslcompiler\GLSLCompiler.exe`, which is small shader compiler. It takes .glsl path as first argument and does test compile. This tool is useful for development and is **not** included in this repo. Just comment this line, You should not need it (TressFx.exe will fail anyway if shader does not compile).
+    - src\shaders\generated\gl-tfx\ppll_build.frag.glsl
+    - src\shaders\generated\gl-tfx\ppll_build.vert.glsl
+    - src\shaders\generated\gl-tfx\ppll_resolve.frag.glsl
+    - src\shaders\generated\gl-tfx\ppll_resolve.vert.glsl
+    - src\shaders\generated\gl-tfx\sim0_IntegrationAndGlobalShapeConstraints.comp.glsl
+    - src\shaders\generated\gl-tfx\sim1_VelocityShockPropagation.comp.glsl
+    - src\shaders\generated\gl-tfx\sim2_LocalShapeConstraints.comp.glsl
+    - src\shaders\generated\gl-tfx\sim3_LengthConstraintsWindAndCollision.comp.glsl
+    - src\shaders\generated\gl-tfx\sim3_TMP_LengthConstraintsWindAndCollision.comp.glsl
+    - src\shaders\generated\gl-tfx\sim4_UpdateFollowHairVertices.comp.glsl
+    PS. `build_glsl.py` also calls `bin\glslcompiler\GLSLCompiler.exe` , which is small shader compiler. It takes .glsl path as first argument and does test compile. This tool is useful for development and is **not** included in this repo. Just comment this line, You should not need it (TressFx.exe will fail anyway if shader does not compile).
 
 3. Build: `make`. Script: [build_and_run.bat](bin/build_and_run.bat).
     PS. this script also invokes `build_glsl.py` and runs `bin\TressFx.exe` upon successful compile. All-in-one.
 
 4. Run `bin\TressFx.exe`
 
-
-TL;DR: It's just 2 scripts to run project from scratch:
+TL; DR: It's just 2 scripts to run project from scratch:
 
 1. [generate_makefile.clang.bat](bin/generate_makefile.clang.bat)
 2. [build_and_run.bat](bin/build_and_run.bat) that calls:
     1. [build_glsl.py](bin/build_glsl.py)
     1. `make` on cmake-generated makefile
     1. `bin\TressFx.exe` - to run executable
-
 
 ## FAQ
 
@@ -120,13 +114,11 @@ A: **VERY** thin wrapper around OpenGL. Thin as in 'You still have to write most
 
 **Q: What to do if I have a problem?**
 
-A: In [main()](src/main.cpp) set log level to trace: `logger::Log::ReportingLevel = logger::Trace;`. It will generate A LOT of text into console. Also, the code is CRAMMED with assertions. And if the assertion is not clear enough, just go to the code line (printed with assertion message) and there is usually a comment about what could have gone wrong.
+A: In [main()](src/main.cpp) set log level to trace: `logger:: Log:: ReportingLevel = logger:: Trace; ` . It will generate A LOT of text into console. Also, the code is CRAMMED with assertions. And if the assertion is not clear enough, just go to the code line (printed with assertion message) and there is usually a comment about what could have gone wrong.
 
 **Q: Your PC?**
 
 A: GTX 1050 Ti, Driver 398.36
-
-
 
 ## Honorable mentions and other 3rd party stuff
 
@@ -140,7 +132,6 @@ A: GTX 1050 Ti, Driver 398.36
 * [RenderDoc](https://renderdoc.org/)
 * [Blender](https://www.blender.org/), [Blender Institute](https://www.blender.org/institute/) <3
     Sintel's model under [CC 3.0](https://durian.blender.org/sharing/), character was simplified into bust. © copyright Blender Foundation | durian.blender.org
-
 
 ## Licencing
 
