@@ -29,8 +29,6 @@ There might be still a few bugs that I will hopefully get rid off when I have a 
 
 ## Usage
 
-Each build step has been automated with scripts (found in [bin](bin) directory).
-
 1. Use cmake to generate project. You will need to provide paths for GLM, SDL2 and GLAD. Script: [generate_makefile.clang.bat](bin/generate_makefile.clang.bat).
     PS. I've used clang, not tested on other compilers.
 
@@ -47,18 +45,7 @@ Each build step has been automated with scripts (found in [bin](bin) directory).
     - src\shaders\generated\gl-tfx\sim3_TMP_LengthConstraintsWindAndCollision.comp.glsl
     - src\shaders\generated\gl-tfx\sim4_UpdateFollowHairVertices.comp.glsl
     - 
-3. Build: `make`. Script: [build_and_run.bat](bin/build_and_run.bat).
-    PS. this script also invokes `build_glsl.py` and runs `bin\TressFx.exe` upon successful compile. All-in-one.
-
-4. Run `bin\TressFx.exe`
-
-TL; DR: It's just 2 scripts to run project from scratch:
-
-1. [generate_makefile.clang.bat](bin/generate_makefile.clang.bat)
-2. [build_and_run.bat](bin/build_and_run.bat) that calls:
-    1. [build_glsl.py](bin/build_glsl.py)
-    1. `make` on cmake-generated makefile
-    1. `bin\TressFx.exe` - to run executable
+3. Use Visual Studio Code run.
 
 ## FAQ
 
