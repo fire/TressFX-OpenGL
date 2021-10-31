@@ -36,9 +36,12 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -D DEBUG -O0 -gdwarf-2") # flag for debug
 endif()
 
-target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.lib"
-stdc++ ole32 user32 gdi32 dinput8 shell32 setupapi advapi32 uuid version oleaut32 ole32 imm32 winmm gdi32 user32 m)
-
+if(WIN32) 
+    target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.lib"
+    stdc++ ole32 user32 gdi32 dinput8 shell32 setupapi advapi32 uuid version oleaut32 ole32 imm32 winmm gdi32 user32 m)
+else()
+    target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} SDL2)
+endif()
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 
 include_directories(PUBLIC "$ENV{homepath}/scoop/apps/sdl2/current/include")
@@ -47,9 +50,11 @@ include_directories(PUBLIC libs/glm)
 include_directories(PUBLIC libs/glm/glm)
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
-add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+if(WIN32) 
+    add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy
                        "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+endif()
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                        ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
