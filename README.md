@@ -2,8 +2,6 @@
 
 Direct port of AMD's TressFX hair/fur rendering and simulation technology to OpenGL.
 
-![gif was supposed to be here. Write me an email, so I can fix this](https://media.giphy.com/media/5dWEuK54XUOWDna6IX/giphy.gif)
-
 *360 view of Sintel's model. Unfortunately, Sintel is not the greatest example to demonstrate TressFX on. Read more in FAQ part of this readme!*
 
 **webms** (refresh with shift a couple of times if it says that webm is corrupted - github does not like this kind of content):
