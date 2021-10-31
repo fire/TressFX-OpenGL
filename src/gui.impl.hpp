@@ -12,13 +12,24 @@ void imgui_init (GlWindow& window) {
   ImGui::CreateContext();
   ImGuiIO& io = ImGui::GetIO(); (void)io;
   //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+  const char* glsl_version = "#version 130";
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+  SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+  SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+  window.sdl_window = SDL_CreateWindow("TressFX", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
+  window.gl_context = SDL_GL_CreateContext(window.sdl_window);
+  SDL_GL_MakeCurrent(window.sdl_window, window.gl_context);
+  SDL_GL_SetSwapInterval(1); // Enable vsync
 
   ImGui_ImplSDL2_InitForOpenGL(window.sdl_window, window.gl_context);
-  ImGui_ImplOpenGL3_Init();
+  ImGui_ImplOpenGL3_Init(glsl_version);
 
-  // Setup style
   ImGui::StyleColorsDark();
-  //ImGui::StyleColorsClassic();
 }
 
 void imgui_destroy() {
@@ -60,7 +71,7 @@ void imgui_update (GlWindow& window, GlobalState& state) {
 
   {
     ImGui::SetNextWindowPos({(float)state.win_width - window_width - window_margin, (float)window_margin});
-    ImGui::SetNextWindowSize(ImVec2(window_width, 0), ImGuiSetCond_Once);
+    ImGui::SetNextWindowSize(ImVec2(window_width, 0), ImGuiCond_Once);
     ImGui::Begin("TressFX OpenGL");
     ImGui::PushItemWidth(slider_size);
 

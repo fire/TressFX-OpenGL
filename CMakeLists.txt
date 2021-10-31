@@ -44,5 +44,4 @@ include_directories(PUBLIC ${SDL2_INCLUDE_DIRS})
 
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
-
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})

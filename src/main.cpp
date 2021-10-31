@@ -18,11 +18,9 @@ using namespace glUtils;
 #include "camera_ortho.impl.hpp"
 
 
-void create_dummy_vao (GLuint& vao) {
+void create_dummy_vao (GLuint& vao) {  
   glGenVertexArrays(1, &vao);
   glBindVertexArray(vao);
-  glVertexAttribI1i(0, 0); // index, default_value
-  glBindVertexArray(0);
 }
 
 static void init_tfx_settings(GlobalState&, std::vector<Geometry>&, bool use_sintel);
@@ -36,19 +34,12 @@ static void draw_debug_capsules(GlobalState&, const Shader&, const Geometry&);
 ///
 
 int main(int argc, char *argv[]) {
-  logger::Log::ReportingLevel = logger::Trace;
-  // logger::Log::ReportingLevel = logger::Warning;
-  // logger::Log::ReportingLevel = logger::Error;
-
   GlobalState state;
-
-  // create window
-  // (NO GL FUNCTION BEFORE THIS!)
   WindowInitOpts opts;
   opts.title = state.title;
   opts.w = state.win_width;
   opts.h = state.win_height;
-  auto window = create_window(opts);
+  glUtils::GlWindow window = create_window(opts);
   LOGI << "Created window: " << window.screen_size[0] << "x" << window.screen_size[1];
   imgui_init(window);
 
@@ -56,7 +47,6 @@ int main(int argc, char *argv[]) {
   std::vector<Geometry> scene_objects;
   init_tfx_settings(state, scene_objects, true);
   apply_draw_parameters(state.draw_params, nullptr);
-  create_dummy_vao(state.dummy_vao);
 
   // set opengl debug print policy
   DebugBehaviourForType debug_beh;
@@ -71,7 +61,6 @@ int main(int argc, char *argv[]) {
 
   // scene geometry
   // Shader bg_shader;
-  // create_shader(bg_shader, state.bg_vs, state.bg_fs);
   Shader wind_shader;
   create_shader(wind_shader, "src/shaders/wind.vert.glsl", "src/shaders/wind.frag.glsl");
   Shader scene_object_shader;
@@ -79,6 +68,8 @@ int main(int argc, char *argv[]) {
   Shader capsule_debug_shader;
   create_shader(capsule_debug_shader, "src/shaders/capsule_debug.vert.glsl", "src/shaders/capsule_debug.frag.glsl");
   auto capsule_debug_geo = create_geometry("assets/icosphere.obj");
+
+  create_dummy_vao(state.dummy_vao);
 
   glClearColor(0.5, 0.5, 0.5, 0.5);
   glClearStencil(0);
@@ -145,7 +136,6 @@ int main(int argc, char *argv[]) {
   imgui_destroy();
   destroy(window);
 
-  LOGI << "--- FIN ---";
   return 0;
 }
 
@@ -215,9 +205,6 @@ void draw_bg (GlobalState& state, const Shader& shader) {
   glUtils::set_uniform(shader, "g_color_bottom", state.bg_grad_bottom);
   glUtils::set_uniform(shader, "g_screenHeight", (f32)state.win_height, true);
 
-  // geo
-  glBindVertexArray(state.dummy_vao);
-
   // draw
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
@@ -237,8 +224,6 @@ void draw_wind (GlobalState& state, const Shader& shader, glm::vec4 wind_dir4) {
   glUtils::set_uniform(shader, "g_Eye", state.camera.get_position(), true);
   glUtils::set_uniform(shader, "g_VP", camera.projection * camera.view);
 
-
-  // geo
   glBindVertexArray(state.dummy_vao);
 
   // draw
