@@ -38,20 +38,6 @@
 
 using namespace AMD::TRESSFX;
 
-static void debug_tfx_header (const TressFXTFXFileHeader& header) {
-  std::string msg = "Tfx header:\n";
-  msg = msg + "version (" + std::to_string(header.version) + "), \n";
-  msg = msg + "numHairStrands (" + std::to_string(header.numHairStrands) + "), \n";
-  msg = msg + "numVerticesPerStrand (" + std::to_string(header.numVerticesPerStrand) + "), \n";
-  msg = msg + "offsetVertexPosition (" + std::to_string(header.offsetVertexPosition) + "), \n";
-  msg = msg + "offsetStrandUV (" + std::to_string(header.offsetStrandUV) + "), \n";
-  msg = msg + "offsetVertexUV (" + std::to_string(header.offsetVertexUV) + "), \n";
-  msg = msg + "offsetStrandThickness (" + std::to_string(header.offsetStrandThickness) + "), \n";
-  msg = msg + "offsetVertexColor (" + std::to_string(header.offsetVertexColor) + ")\n";
-  TressFXLogWarning(msg.c_str());
-  // throw "GFX_FAIL"; // early fail
-}
-
 namespace AMD
 {
     static void GetTangentVectors(const tressfx_vec3& n, tressfx_vec3& t0, tressfx_vec3& t1)
@@ -599,10 +585,6 @@ namespace AMD
         AMD::int32 numOfBones = 0;
         EI_Seek(ioObject, 0);
         EI_Read((void*)&numOfBones, sizeof(AMD::int32), ioObject);
-
-        size_t startOfBoneNames = (sizeof(AMD::int32) * numOfBones);
-        size_t currentNamePosition = startOfBoneNames;
-        size_t currentOffSetPosition = 0;
 
         std::vector<std::string> boneNames;
         boneNames.resize(numOfBones);

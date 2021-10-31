@@ -9,6 +9,7 @@ static const char* debug_EI_ResourceState(AMD::EI_ResourceState st) {
     case AMD::EI_STATE_COPY_SOURCE: return "EI_STATE_COPY_SOURCE";
     case AMD::EI_STATE_RENDER_TARGET: return "EI_STATE_RENDER_TARGET";
   }
+  return nullptr;
 }
 
 static void debug_barrier (const AMD::EI_Barrier& bar) {

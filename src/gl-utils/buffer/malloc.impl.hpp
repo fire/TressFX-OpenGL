@@ -25,13 +25,11 @@ void allocate_buffer (glUtils::RawBuffer& buf) {
 
 	GLuint //mutable_storage_flags,   // flags for glBufferData
 				 immutable_storage_flags; // flags for glBufferStorage
-	 bool immutable = false;
 
 	switch (buf.usage_pattern) {
 		case BufferUsagePattern::Persistent:
 			// mutable_storage_flags = GL_DYNAMIC_DRAW;
 			immutable_storage_flags = GL_MAP_PERSISTENT_BIT | GL_MAP_READ_BIT | GL_MAP_WRITE_BIT;
-			immutable = true;
 			break;
 		case BufferUsagePattern::Dynamic:
 			// mutable_storage_flags = GL_DYNAMIC_DRAW;
@@ -44,7 +42,6 @@ void allocate_buffer (glUtils::RawBuffer& buf) {
 		case BufferUsagePattern::Immutable:
 			// mutable_storage_flags = GL_STATIC_DRAW;
 			immutable_storage_flags = 0;
-			immutable = true;
 			break;
 	}
 
