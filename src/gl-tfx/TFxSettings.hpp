@@ -21,7 +21,7 @@ namespace glTFx {
     //
     // model
     const char* object_name = "mohawk";
-    const char* filepath = "assets/ratboy/Ratboy_mohawk.tfx";
+    const char* filepath = "assets/Ratboy/Ratboy_mohawk.tfx";
     i32 follow_hairs_per_guide_hair = 2;
     glm::mat4 model_matrix;
 
