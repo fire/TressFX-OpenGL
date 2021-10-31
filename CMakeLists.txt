@@ -36,12 +36,11 @@ target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS})
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 
-find_package(GLM REQUIRED)
-include_directories(PUBLIC ${GLM_INCLUDE_DIRS})
-
 find_package(SDL2 REQUIRED)
 include_directories(PUBLIC ${SDL2_INCLUDE_DIRS})
 
+include_directories(PUBLIC libs/glm)
+include_directories(PUBLIC libs/glm/glm)
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})

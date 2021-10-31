@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "(gdb) Launch",
-            "type": "cppdbg",
+            "type": "lldb-mi",
             "request": "launch",
             "program": "${workspaceFolder}/build/bin/TressFx",
             "args": [],
