@@ -36,8 +36,8 @@
 #define TRESSFX_ASSERT assert
 #endif
 
-#define EI_Malloc(x) (AMD::g_Callbacks.pfMalloc(x)) //malloc(x);
-#define EI_Free(x) (AMD::g_Callbacks.pfFree(x))
+#define EI_Malloc(x) (malloc(x)) //malloc(x);
+#define EI_Free(x) (free(x))
 
 #define TressFXLogWarning(msg) (AMD::g_Callbacks.pfError(msg))
 

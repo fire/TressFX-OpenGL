@@ -1,4 +1,4 @@
-#include "../../../include/pch.hpp"
+#include "../../include/pch.hpp"
 #include "print_me.hpp"
 #include "TFxSettings.hpp"
 #include "../../libs/amd_tressfx/include/TressFXAsset.h"

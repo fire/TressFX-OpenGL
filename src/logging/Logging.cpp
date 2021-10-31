@@ -28,7 +28,7 @@ namespace logger {
 
     typedef std::ostringstream stream_t;
 
-    void set_header(const MsgMetaData&);
+    void set_header(MsgMetaData&);
 
     void flush () {
       auto str = this->os.str();

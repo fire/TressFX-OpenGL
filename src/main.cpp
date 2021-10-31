@@ -167,8 +167,8 @@ void init_tfx_settings(GlobalState& state, std::vector<Geometry>& scene_objects,
     // sintel
     const float model_scale = 0.01;
     settings.object_name = "sintel_hair";
-    settings.filepath = "assets\\sintel_lite_v2_1\\GEO-sintel_hair_emit.001-sintel_hair.tfx";
-    // settings.filepath = "assets\\sintel_lite_v2_1\\0TestHair-TestHair.tfx";
+    settings.filepath = "assets/sintel_lite_v2_1/GEO-sintel_hair_emit.001-sintel_hair.tfx";
+    // settings.filepath = "assets/sintel_lite_v2_1/0TestHair-TestHair.tfx";
     settings.hair_thickness = 0.2;
     settings.hair_thickness_at_tip_ratio = 0.01;
     sim.m_tipSeparation = 2.1;
@@ -182,8 +182,8 @@ void init_tfx_settings(GlobalState& state, std::vector<Geometry>& scene_objects,
     m = glm::scale(m, glm::vec3(model_scale, model_scale, model_scale));
     settings.model_matrix = glm::translate(m, {0,-0.35 / model_scale, 0});
     // objects
-    scene_objects.push_back(create_geometry("assets\\sintel_lite_v2_1\\sintel.obj"));
-    scene_objects.push_back(create_geometry("assets\\sintel_lite_v2_1\\sintel_eyeballs.obj"));
+    scene_objects.push_back(create_geometry("assets/sintel_lite_v2_1/sintel.obj"));
+    scene_objects.push_back(create_geometry("assets/sintel_lite_v2_1/sintel_eyeballs.obj"));
 
     // collision capsules
     settings.collision_capsule0 = glm::vec4(0, 36.65, -1.3,  9.27);

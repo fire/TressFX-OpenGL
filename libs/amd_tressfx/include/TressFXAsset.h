@@ -30,7 +30,7 @@
 
 #include "AMD_Types.h"
 #include "AMD_TressFX.h"
-#include "Math\\Transform.h"
+#include "Math/Transform.h"
 #include "TressFXBoneSkeletonInterface.h"
 #include "TressFXCommon.h"
 

@@ -30,6 +30,7 @@
 #ifndef AMD_TRESSFX_H
 #define AMD_TRESSFX_H
 
+#include <cstddef>
 #define AMD_TRESSFX_VERSION_MAJOR                    4
 #define AMD_TRESSFX_VERSION_MINOR                    0
 #define AMD_TRESSFX_VERSION_PATCH                    0
