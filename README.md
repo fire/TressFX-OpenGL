@@ -46,8 +46,7 @@ Each build step has been automated with scripts (found in [bin](bin) directory).
     - src\shaders\generated\gl-tfx\sim3_LengthConstraintsWindAndCollision.comp.glsl
     - src\shaders\generated\gl-tfx\sim3_TMP_LengthConstraintsWindAndCollision.comp.glsl
     - src\shaders\generated\gl-tfx\sim4_UpdateFollowHairVertices.comp.glsl
-    PS. `build_glsl.py` also calls `bin\glslcompiler\GLSLCompiler.exe` , which is small shader compiler. It takes .glsl path as first argument and does test compile. This tool is useful for development and is **not** included in this repo. Just comment this line, You should not need it (TressFx.exe will fail anyway if shader does not compile).
-
+    - 
 3. Build: `make`. Script: [build_and_run.bat](bin/build_and_run.bat).
     PS. this script also invokes `build_glsl.py` and runs `bin\TressFx.exe` upon successful compile. All-in-one.
 

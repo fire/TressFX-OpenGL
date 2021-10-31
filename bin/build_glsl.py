@@ -60,23 +60,6 @@ def process_error_line(err_line, shader_lines):
     else:
         print(err_line)
 
-def test_compile(filepath, shader_lines):
-    ret = subprocess.check_output([
-        'bin\glslcompiler\GLSLCompiler.exe',
-        filepath,
-        '-iconic' # 'silences' freeglut window
-    ]).decode("utf-8")
-    # print(Colors.RED, str(ret), Colors.WHITE)
-
-    if 'success!' in ret.lower():
-        return True
-
-    err_lines = ret.split('\n')
-    print(Colors.RED, err_lines[0].strip(), Colors.WHITE)
-    for line in err_lines[1:]:
-        process_error_line(line, shader_lines)
-    return False
-
 if __name__ == '__main__':
     has_error = False
     for filepath in SHADER_FILES:
@@ -89,9 +72,6 @@ if __name__ == '__main__':
 
         with open(out_path, 'w') as f:
             f.write(new_file_content)
-
-        has_error = has_error or not test_compile(out_path, after_processing)
-        # break
 
     if has_error:
         sys.exit(1)
