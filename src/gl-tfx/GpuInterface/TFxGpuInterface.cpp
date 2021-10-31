@@ -81,8 +81,6 @@ extern "C" {
   }
 
 } // extern "C"
-#pragma GCC diagnostic warning "-Wunused-parameter"
-
 
 static std::string get_file_contents(const char *filename);
 
