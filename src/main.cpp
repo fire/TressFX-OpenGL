@@ -56,13 +56,13 @@ int main(int argc, char *argv[]) {
   tfx_sample.init();
 
   Shader wind_shader;
-  create_shader(wind_shader, "src/shaders/wind.vert.glsl",
-                "src/shaders/wind.frag.glsl");
+  create_shader(wind_shader, "shaders/wind.vert.glsl",
+                "shaders/wind.frag.glsl");
   Shader scene_object_shader;
   create_shader(scene_object_shader, state.obj_vs, state.obj_fs);
   Shader capsule_debug_shader;
-  create_shader(capsule_debug_shader, "src/shaders/capsule_debug.vert.glsl",
-                "src/shaders/capsule_debug.frag.glsl");
+  create_shader(capsule_debug_shader, "shaders/capsule_debug.vert.glsl",
+                "shaders/capsule_debug.frag.glsl");
   auto capsule_debug_geo = create_geometry("assets/icosphere.obj");
 
   create_dummy_vao(state.dummy_vao);

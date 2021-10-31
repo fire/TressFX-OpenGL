@@ -36,14 +36,14 @@ struct GlobalState {
   bool show_collision_capsules = false;
 
   // scene
-  const std::string obj_vs = "src/shaders/simple_obj.vert.glsl";
-  const std::string obj_fs = "src/shaders/simple_obj.frag.glsl";
+  const std::string obj_vs = "shaders/simple_obj.vert.glsl";
+  const std::string obj_fs = "shaders/simple_obj.frag.glsl";
   bool show_model = true;
 
 
   // background
-  const std::string bg_vs = "src/shaders/bg.vert.glsl";
-  const std::string bg_fs = "src/shaders/bg.frag.glsl";
+  const std::string bg_vs = "shaders/bg.vert.glsl";
+  const std::string bg_fs = "shaders/bg.frag.glsl";
   const glm::vec4 bg_grad_top    = {0.49, 0.57, 0.65, 1.0}; // some nice gray-blue color
   const glm::vec4 bg_grad_bottom = {0.01, 0.01, 0.01, 1.0};
 

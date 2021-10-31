@@ -47,3 +47,13 @@ include_directories(PUBLIC libs/glm)
 include_directories(PUBLIC libs/glm/glm)
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                       "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/src/shaders $<TARGET_FILE_DIR:${PROJECT_NAME}>/shaders)
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME} DESTINATION ${CMAKE_BUILD_DIRECTORY}/bin)

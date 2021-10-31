@@ -25,7 +25,7 @@
 
 // typedef SuCommandListPtr   EI_CommandContext;
 
-static std::string SHADER_PATH = "src/shaders/generated/gl-tfx/";
+static std::string SHADER_PATH = "shaders/generated/gl-tfx/";
 
 // Callbacks impl:
 EI_Resource::EI_Resource (){}
