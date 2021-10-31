@@ -25,7 +25,7 @@ file(GLOB_RECURSE LIBS_FILES "libs/*.cpp")
 include_directories(PUBLIC libs)
 add_executable(${PROJECT_NAME} "libs/glad/src/glad.c" ${SOURCE_FILES} ${LIBS_FILES} "src/main.cpp")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic ${M_CPP_17_COMPILER_FLAG}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra ${M_CPP_17_COMPILER_FLAG}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isystem \"libs/amd_tressfx/include\"") # add TFx to include dirs (required by AMD lib impl)
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")

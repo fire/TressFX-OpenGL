@@ -26,10 +26,6 @@
 
 #pragma once
 
-#pragma warning(push)
-#pragma warning(                                                                                  \
-    disable : 4201)  // disable warning C4201: nonstandard extension used : nameless struct/union
-
 #include <cmath>
 
 namespace AMD
@@ -109,5 +105,3 @@ namespace AMD
     };
 
 }  // namespace AMD
-
-#pragma warning(pop)

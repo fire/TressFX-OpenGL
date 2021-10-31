@@ -28,11 +28,6 @@
 
 #include "Matrix33.h"
 #include "Vector3D.h"
-
-#pragma warning(push)
-#pragma warning(                                                                                  \
-    disable : 4201)  // disable warning C4201: nonstandard extension used : nameless struct/union
-
 namespace AMD
 {
     class tressfx_quat
@@ -46,9 +41,9 @@ namespace AMD
         ~tressfx_quat(void);
 
     public:
-        union
+        union 
         {
-            struct
+            struct 
             {
                 float m[4];
             };  // x, y, z, w
@@ -83,5 +78,3 @@ namespace AMD
     };
 
 }  // namespace AMD
-
-#pragma warning(pop)
