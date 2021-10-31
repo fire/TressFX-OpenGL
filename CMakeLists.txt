@@ -23,7 +23,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
 file(GLOB_RECURSE LIBS_FILES "libs/*.cpp")
 include_directories(PUBLIC libs)
-add_executable(${PROJECT_NAME} "libs/glad/glad.c" ${SOURCE_FILES} ${LIBS_FILES} "src/main.cpp")
+add_executable(${PROJECT_NAME} "libs/glad/src/glad.c" ${SOURCE_FILES} ${LIBS_FILES} "src/main.cpp")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic ${M_CPP_17_COMPILER_FLAG}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isystem \"libs/amd_tressfx/include\"") # add TFx to include dirs (required by AMD lib impl)
@@ -42,6 +42,7 @@ include_directories(PUBLIC ${GLM_INCLUDE_DIRS})
 find_package(SDL2 REQUIRED)
 include_directories(PUBLIC ${SDL2_INCLUDE_DIRS})
 
+include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})

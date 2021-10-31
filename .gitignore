@@ -40,3 +40,5 @@ gh-images
 
 # not used ATM
 libs/stb/
+
+build/
