@@ -113,10 +113,6 @@ A: **VERY** thin wrapper around OpenGL. Thin as in 'You still have to write most
 
 A: In [main()](src/main.cpp) set log level to trace: `logger:: Log:: ReportingLevel = logger:: Trace; ` . It will generate A LOT of text into console. Also, the code is CRAMMED with assertions. And if the assertion is not clear enough, just go to the code line (printed with assertion message) and there is usually a comment about what could have gone wrong.
 
-**Q: Your PC?**
-
-A: GTX 1050 Ti, Driver 398.36
-
 ## Honorable mentions and other 3rd party stuff
 
 * AMD for TressFX
