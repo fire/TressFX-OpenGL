@@ -1,12 +1,13 @@
 # OS
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     set(M_OS_WINDOWS 1)
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Mingw")
+    set(M_OS_WINDOWS 1)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(M_OS_UNIX 1)
     set(M_OS_LINUX 1)
 else()
-    message(FATAL_ERROR "Unsupported operating system")
-    return()
+    set(M_OS_UNIX 1)
 endif()
 
 # ARCHITECTURE (note: this test won't work for cross-compilation)

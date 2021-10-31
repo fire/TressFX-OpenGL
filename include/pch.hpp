@@ -1,6 +1,7 @@
 #pragma once
 
 // TODO actually use as pch
+#define SDL_MAIN_HANDLED
 
 // #include <cassert>
 #include <string>

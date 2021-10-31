@@ -20,6 +20,10 @@ message("Project: ${CMAKE_PROJECT_NAME} v${VERSION_MAJOR}.${VERSION_MINOR}.${VER
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+find_package(PkgConfig REQUIRED) 
+
+pkg_check_modules(SDL2 REQUIRED sdl2)
+
 file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
 file(GLOB_RECURSE LIBS_FILES "libs/*.cpp")
 include_directories(PUBLIC libs)
@@ -32,15 +36,14 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -D DEBUG -O0 -gdwarf-2") # flag for debug
 endif()
 
-target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS})
+target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.lib"
+stdc++ ole32 user32 gdi32 dinput8 shell32 setupapi advapi32 uuid version oleaut32 ole32 imm32 winmm gdi32 user32 m)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 
-find_package(SDL2 REQUIRED)
-include_directories(PUBLIC ${SDL2_INCLUDE_DIRS})
+include_directories(PUBLIC "$ENV{homepath}/scoop/apps/sdl2/current/include")
 
 include_directories(PUBLIC libs/glm)
 include_directories(PUBLIC libs/glm/glm)
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})

@@ -10,9 +10,7 @@
 # - https://github.com/brendan-w/collector/blob/master/cmake/FindSDL2.cmake
 # - https://github.com/tcbrindle/sdl2-cmake-scripts/blob/master/FindSDL2.cmake
 
-IF(M_OS_LINUX)
-    SET(_sdl2_SEARCH_DIRS "/usr" "/usr/local")
-ENDIF()
+SET(_sdl2_SEARCH_DIRS "/usr" "/usr/local")
 
 # Put user specified location at beginning of search
 IF(SDL2_ROOT_DIR)

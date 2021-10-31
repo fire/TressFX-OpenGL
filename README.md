@@ -2,7 +2,7 @@
 
 Direct port of AMD's TressFX hair/fur rendering and simulation technology to OpenGL.
 
-*360 view of Sintel's model. Unfortunately, Sintel is not the greatest example to demonstrate TressFX on. Read more in FAQ part of this readme!*
+*Unfortunately, Sintel is not the greatest example to demonstrate TressFX on. Read more in FAQ part of this readme!*
 
 **webms** (refresh with shift a couple of times if it says that webm is corrupted - github does not like this kind of content):
 
@@ -28,6 +28,8 @@ Due to time constraints following techniques are not yet implemented:
 There might be still a few bugs that I will hopefully get rid off when I have a little bit more spare time.
 
 ## Usage
+
+0. `scoop install llvm-mingw sdl2 pkg-config`
 
 1. Use cmake to generate project. You will need to provide paths for GLM, SDL2 and GLAD. Script: [generate_makefile.clang.bat](bin/generate_makefile.clang.bat).
     PS. I've used clang, not tested on other compilers.
