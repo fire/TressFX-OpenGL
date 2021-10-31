@@ -27,7 +27,7 @@ Due to time constraints following techniques are not yet implemented:
 
 There might be still a few bugs that I will hopefully get rid off when I have a little bit more spare time.
 
-## Usage
+## Usage for Windows (Fedora Linux Support is in the log.)
 
 0. `scoop install llvm-mingw sdl2 pkg-config`
 
