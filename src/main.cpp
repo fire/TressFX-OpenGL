@@ -34,6 +34,9 @@ static void draw_debug_capsules(GlobalState&, const Shader&, const Geometry&);
 ///
 
 int main(int argc, char *argv[]) {
+  // logger::Log::ReportingLevel = logger::Trace;
+  // logger::Log::ReportingLevel = logger::Warning;
+  logger::Log::ReportingLevel = logger::Error;
   GlobalState state;
   WindowInitOpts opts;
   opts.title = state.title;
