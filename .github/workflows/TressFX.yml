@@ -49,7 +49,7 @@ jobs:
         yum install -y epel-release
         dnf install -y dnf-plugins-core
         dnf config-manager --set-enabled powertools
-        yum install -y python39 clang SDL2-devel ninja-build cmake pkg-config
+        yum install -y python39 clang SDL2-devel ninja-build cmake pkg-config zip
     - name: Build Linux package
       run: |
         mkdir -p build-linux
