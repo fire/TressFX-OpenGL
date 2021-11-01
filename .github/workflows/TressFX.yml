@@ -4,7 +4,7 @@ jobs:
   build-ubuntu:
     runs-on: ubuntu-latest
     container:
-      image: fedora:35
+      image: rockylinux/rockylinux:8
     steps:
     - name: Checkout
       uses: actions/checkout@v2
