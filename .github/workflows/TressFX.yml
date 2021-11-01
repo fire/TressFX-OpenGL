@@ -35,7 +35,7 @@ jobs:
         prerelease: true
         title: TressFX packages
         files: |
-          TressFX-windows.zip
+          build-windows/package/TressFX-windows.zip
   build-ubuntu:
     runs-on: ubuntu-latest
     container:
@@ -73,4 +73,4 @@ jobs:
         prerelease: true
         title: TressFX packages
         files: |
-          TressFX-linux.zip
+          build-linux/package/TressFX-linux.zip
