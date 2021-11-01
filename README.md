@@ -29,7 +29,7 @@ There might be still a few bugs that I will hopefully get rid off when I have a 
 
 ## Usage for Fedora 35
 
-1. Install cross compiler: `sudo yum -y install mingw64-SDL2-static mingw64-gcc-c++ ninja`
+1. Install cross compiler: `sudo yum -y install mingw64-SDL2-static mingw64-gcc-c++ ninja-build`
 2. `cd build`
 3. `cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-fedora-mingw64.cmake .. -GNinja`
 4. `ninja`

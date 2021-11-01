@@ -1,6 +1,42 @@
 name: "Build workflow"
 on: [push]
 jobs:
+  build-windows:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:35
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Update OS
+      run: |
+        uname -a
+        yum install -y epel-release
+        dnf install -y dnf-plugins-core
+        dnf config-manager --set-enabled powertools
+        yum install -y gcc mingw64-SDL2-static mingw64-gcc-c++ ninja
+    - name: Build Windows package
+      run: |
+        mkdir -p build-windows
+        cd build-windows
+        cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-fedora-mingw64.cmake .. -GNinja
+        ninja
+      shell: bash
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: TressFX-windows
+        path: build-windows/package/*
+              LICENSE
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: latest-windows
+        prerelease: true
+        title: TressFX packages
+        files: |
+          TressFX-windows.zip
   build-ubuntu:
     runs-on: ubuntu-latest
     container:
@@ -17,7 +53,10 @@ jobs:
         yum install -y gcc SDL2 mingw64-gcc-c++ ninja-build
     - name: Build Linux package
       run: |
-        mkdir -p build-linux && cd build-linux && cmake .. -GNinja && ninja
+        mkdir -p build-linux
+        cd build-linux
+        cmake .. -GNinja
+        ninja
       shell: bash
     - name: Archive Release
       uses: thedoctor0/zip-release@master
@@ -26,21 +65,10 @@ jobs:
         filename: TressFX-linux
         path: build-linux/package/*
               LICENSE
-    # - name: Build Linux package
-    #   run: |
-    #     mkdir -p build-windows && cd build-windows && cmake .. -GNinja && ninja
-    #   shell: bash
-    # - name: Archive Release
-    #   uses: thedoctor0/zip-release@master
-    #   with:
-    #     type: 'zip'
-    #     filename: TressFX-windows
-    #     path: build-windows/package/*
-    #           LICENSE
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: latest
+        automatic_release_tag: latest-linux
         prerelease: true
         title: TressFX packages
         files: |
