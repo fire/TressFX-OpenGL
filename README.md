@@ -27,7 +27,15 @@ Due to time constraints following techniques are not yet implemented:
 
 There might be still a few bugs that I will hopefully get rid off when I have a little bit more spare time.
 
-## Usage for Windows (Fedora Linux Support is in the log.)
+## Usage for Fedora 35
+
+1. Install cross compiler: `sudo yum -y install mingw64-SDL2-static mingw64-gcc-c++ ninja`
+2. `cd build`
+3. `cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-fedora-mingw64.cmake .. -GNinja`
+4. `ninja`
+5. Go to package and run TressFX
+
+## Usage for Windows
 
 0. `scoop install llvm-mingw sdl2 pkg-config`
 

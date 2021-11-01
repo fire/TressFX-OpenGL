@@ -18,7 +18,7 @@ message("Architecture: ${M_ARCH_NAME}")
 message("Complier: ${M_COMPILER_NAME}")
 message("Project: ${CMAKE_PROJECT_NAME} v${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/package)
 
 find_package(PkgConfig REQUIRED) 
 
@@ -37,7 +37,7 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 endif()
 
 if(WIN32) 
-    target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.lib"
+    target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} SDL2
     stdc++ ole32 user32 gdi32 dinput8 shell32 setupapi advapi32 uuid version oleaut32 ole32 imm32 winmm gdi32 user32 m)
 else()
     target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} SDL2)
@@ -50,15 +50,27 @@ include_directories(PUBLIC libs/glm)
 include_directories(PUBLIC libs/glm/glm)
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
-if(WIN32) 
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+COMMAND ${CMAKE_COMMAND} -E copy
+    "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+COMMAND ${CMAKE_COMMAND} -E copy
+    "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_seh-1.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+COMMAND ${CMAKE_COMMAND} -E copy
+    "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libstdc++-6.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-endif()
+    COMMAND ${CMAKE_COMMAND} -E copy
+        "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+# elseif(WIN32)
+#     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+#                COMMAND ${CMAKE_COMMAND} -E copy
+#                    "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+# endif()
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                        ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                        ${CMAKE_SOURCE_DIR}/src/shaders $<TARGET_FILE_DIR:${PROJECT_NAME}>/shaders)
-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME} DESTINATION ${CMAKE_BUILD_DIRECTORY}/bin)
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME} DESTINATION ${CMAKE_BUILD_DIRECTORY}/package)
