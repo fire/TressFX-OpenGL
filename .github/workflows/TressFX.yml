@@ -26,8 +26,8 @@ jobs:
       with:
         type: 'zip'
         filename: TressFX-windows
-        path: build-windows/package/*
-              LICENSE
+        directory: build-linux/package
+        path: .
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -64,8 +64,8 @@ jobs:
       with:
         type: 'zip'
         filename: TressFX-linux
-        path: build-linux/package/*
-              LICENSE
+        directory: build-linux/package
+        path: .
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"

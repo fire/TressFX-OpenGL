@@ -61,6 +61,9 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
             "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 endif()
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CMAKE_SOURCE_DIR}/LICENSE $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                        ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
