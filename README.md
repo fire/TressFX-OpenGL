@@ -26,36 +26,9 @@ Due to time constraints following techniques are not yet implemented:
 * [Cyrill Crassin's PPLL OIT improvements](http://blog.icare3d.org/2010/07/opengl-40-abuffer-v20-linked-lists-of.html)
 
 There might be still a few bugs that I will hopefully get rid off when I have a little bit more spare time.
+## Usage
 
-## Usage for Fedora 35
-
-1. Install cross compiler: `sudo yum -y install mingw64-SDL2-static mingw64-gcc-c++ ninja-build`
-2. `cd build`
-3. `cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-fedora-mingw64.cmake .. -GNinja`
-4. `ninja`
-5. Go to package and run TressFX
-
-## Usage for Windows
-
-0. `scoop install llvm-mingw sdl2 pkg-config`
-
-1. Use cmake to generate project. You will need to provide paths for GLM, SDL2 and GLAD. Script: [generate_makefile.clang.bat](bin/generate_makefile.clang.bat).
-    PS. I've used clang, not tested on other compilers.
-
-2. Generate shaders. I've written simple python script that processes .glsl files for `#pragma include "xxx.glsl"` and textually replaces this line with content of the file. You can even do this by hand. Script: [build_glsl.py](bin/build_glsl.py). At the end of this step You should have following files:
-
-    - src\shaders\generated\gl-tfx\ppll_build.frag.glsl
-    - src\shaders\generated\gl-tfx\ppll_build.vert.glsl
-    - src\shaders\generated\gl-tfx\ppll_resolve.frag.glsl
-    - src\shaders\generated\gl-tfx\ppll_resolve.vert.glsl
-    - src\shaders\generated\gl-tfx\sim0_IntegrationAndGlobalShapeConstraints.comp.glsl
-    - src\shaders\generated\gl-tfx\sim1_VelocityShockPropagation.comp.glsl
-    - src\shaders\generated\gl-tfx\sim2_LocalShapeConstraints.comp.glsl
-    - src\shaders\generated\gl-tfx\sim3_LengthConstraintsWindAndCollision.comp.glsl
-    - src\shaders\generated\gl-tfx\sim3_TMP_LengthConstraintsWindAndCollision.comp.glsl
-    - src\shaders\generated\gl-tfx\sim4_UpdateFollowHairVertices.comp.glsl
-    - 
-3. Use Visual Studio Code run.
+Use the releases or see the Github workflows.
 
 ## FAQ
 
