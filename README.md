@@ -4,8 +4,7 @@ Direct port of AMD's TressFX hair/fur rendering and simulation technology to Ope
 
 *Unfortunately, Sintel is not the greatest example to demonstrate TressFX on. Read more in FAQ part of this readme!*
 
-* [higher res of gif above](https://raw.githubusercontent.com/Scthe/scthe.github.io/tressfx-webm/images/2018-08-09-tressfx-opengl/1_360.webm)
-* [playing with wind strength](https://raw.githubusercontent.com/Scthe/scthe.github.io/tressfx-webm/images/2018-08-09-tressfx-opengl/2_wind.webm)
+https://user-images.githubusercontent.com/32321/139611908-f75b0092-8b48-4515-8965-a83bc4cf36e3.mp4
 
 ## What is this?
 
@@ -81,6 +80,10 @@ A: **VERY** thin wrapper around OpenGL. Thin as in 'You still have to write most
 **Q: What to do if I have a problem?**
 
 A: In [main()](src/main.cpp) set log level to trace: `logger:: Log:: ReportingLevel = logger:: Trace; ` . It will generate A LOT of text into console. Also, the code is CRAMMED with assertions. And if the assertion is not clear enough, just go to the code line (printed with assertion message) and there is usually a comment about what could have gone wrong.
+
+## Other videos
+
+https://user-images.githubusercontent.com/32321/139611899-2451c8ec-fc88-40f7-891d-ebaaeb727484.mp4
 
 ## Honorable mentions and other 3rd party stuff
 
