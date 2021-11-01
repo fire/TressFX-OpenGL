@@ -11,7 +11,7 @@ jobs:
     - name: Update OS
       run: |
         uname -a
-        sudo apt install -y -q gcc mingw64-SDL2-static mingw64-gcc-c++ ninja
+        sudo yum install -y -q gcc mingw64-SDL2-static mingw64-gcc-c++ ninja
     - name: Build Linux package
       run: |
         mkdir -p build-linux && cd build-linux && cmake .. -GNinja && ninja
