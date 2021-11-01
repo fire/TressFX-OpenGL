@@ -50,7 +50,7 @@ jobs:
         yum install -y epel-release
         dnf install -y dnf-plugins-core
         dnf config-manager --set-enabled powertools
-        yum install -y clang SDL2 ninja-build cmake
+        yum install -y clang SDL2-devel ninja-build cmake
     - name: Build Linux package
       run: |
         mkdir -p build-linux
