@@ -15,7 +15,7 @@ jobs:
     - name: Build Windows package
       run: |
         mkdir -p build-windows
-        python bin/build_glsl.py
+        python3 bin/build_glsl.py
         cd build-windows
         cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-fedora-mingw64.cmake .. -GNinja
         ninja
