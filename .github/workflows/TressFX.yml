@@ -15,6 +15,7 @@ jobs:
     - name: Build Windows package
       run: |
         mkdir -p build-windows
+        mkdir -p src/shaders/generated/gl-tfx
         python3 bin/build_glsl.py
         cd build-windows
         cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-fedora-mingw64.cmake .. -GNinja
@@ -48,10 +49,11 @@ jobs:
         yum install -y epel-release
         dnf install -y dnf-plugins-core
         dnf config-manager --set-enabled powertools
-        yum install -y python clang SDL2-devel ninja-build cmake pkg-config
+        yum install -y python39 clang SDL2-devel ninja-build cmake pkg-config
     - name: Build Linux package
       run: |
         mkdir -p build-linux
+        mkdir -p src/shaders/generated/gl-tfx
         python3 bin/build_glsl.py
         cd build-linux
         cmake .. -GNinja
