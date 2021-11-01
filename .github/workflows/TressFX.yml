@@ -11,6 +11,7 @@ jobs:
     - name: Update OS
       run: |
         uname -a
+        yum install -y epel-release
         yum install -y gcc mingw64-SDL2-static mingw64-gcc-c++ ninja
     - name: Build Linux package
       run: |
