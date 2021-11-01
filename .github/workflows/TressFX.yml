@@ -52,7 +52,7 @@ jobs:
     - name: Build Linux package
       run: |
         mkdir -p build-linux
-        python bin/build_glsl.py
+        python3 bin/build_glsl.py
         cd build-linux
         cmake .. -GNinja
         ninja
