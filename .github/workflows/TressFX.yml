@@ -14,7 +14,7 @@ jobs:
         yum install -y epel-release
         dnf install -y dnf-plugins-core
         dnf config-manager --set-enabled powertools
-        yum install -y gcc mingw64-SDL2-static mingw64-gcc-c++ ninja
+        yum install -y gcc SDL2 mingw64-gcc-c++ ninja-build
     - name: Build Linux package
       run: |
         mkdir -p build-linux && cd build-linux && cmake .. -GNinja && ninja
@@ -26,17 +26,17 @@ jobs:
         filename: TressFX-linux
         path: build-linux/package/*
               LICENSE
-    - name: Build Linux package
-      run: |
-        mkdir -p build-windows && cd build-windows && cmake .. -GNinja && ninja
-      shell: bash
-    - name: Archive Release
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'zip'
-        filename: TressFX-windows
-        path: build-windows/package/*
-              LICENSE
+    # - name: Build Linux package
+    #   run: |
+    #     mkdir -p build-windows && cd build-windows && cmake .. -GNinja && ninja
+    #   shell: bash
+    # - name: Archive Release
+    #   uses: thedoctor0/zip-release@master
+    #   with:
+    #     type: 'zip'
+    #     filename: TressFX-windows
+    #     path: build-windows/package/*
+    #           LICENSE
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -45,4 +45,3 @@ jobs:
         title: TressFX packages
         files: |
           TressFX-linux.zip
-          TressFX-windows.zip
