@@ -71,6 +71,6 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: latest-linux
         prerelease: true
-        title: TressFX packages
+        title: TressFX packages (Not expected to work.)
         files: |
           build-linux/package/TressFX-linux.zip
