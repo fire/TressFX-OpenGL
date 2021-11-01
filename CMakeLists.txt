@@ -36,7 +36,7 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -D DEBUG -O0 -gdwarf-2") # flag for debug
 endif()
 
-if(WIN32) 
+if(${CMAKE_SYSTEM_NAME} matches "Windows")) 
     target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} SDL2 dl
     stdc++ ole32 user32 gdi32 dinput8 shell32 setupapi advapi32 uuid version oleaut32 ole32 imm32 winmm gdi32 user32 m)
 else()
@@ -50,7 +50,7 @@ include_directories(PUBLIC libs/glm)
 include_directories(PUBLIC libs/glm/glm)
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
-if (WIN32)
+if (${CMAKE_SYSTEM_NAME} matches "Windows")
     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
         "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
