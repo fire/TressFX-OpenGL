@@ -50,23 +50,20 @@ include_directories(PUBLIC libs/glm)
 include_directories(PUBLIC libs/glm/glm)
 include_directories(PUBLIC libs/glad/include)
 include_directories(PUBLIC libs/amd_tressfx/include)
-add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
-COMMAND ${CMAKE_COMMAND} -E copy
-    "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
-COMMAND ${CMAKE_COMMAND} -E copy
-    "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_seh-1.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
-COMMAND ${CMAKE_COMMAND} -E copy
-    "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libstdc++-6.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+if (WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
-        "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-# elseif(WIN32)
-#     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
-#                COMMAND ${CMAKE_COMMAND} -E copy
-#                    "$ENV{homepath}/scoop/apps/sdl2/current/lib/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-# endif()
+        "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+    add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_seh-1.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+    add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libstdc++-6.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+            "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+endif()
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                        ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
