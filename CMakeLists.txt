@@ -22,7 +22,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/package)
 
 find_package(PkgConfig REQUIRED) 
 
-pkg_check_modules(SDL2 REQUIRED sdl2)
+pkg_check_modules(SDL2 REQUIRED)
 
 file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
 file(GLOB_RECURSE LIBS_FILES "libs/*.cpp")
@@ -35,9 +35,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isystem \"libs/amd_tressfx/include\"")
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -D DEBUG -O0 -gdwarf-2") # flag for debug
 endif()
-target_compile_options(${PROJECT_NAME} PRIVATE Wl,--start-group)
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows") 
-    target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} SDL2 dl
+    target_link_libraries(${PROJECT_NAME} dl ${M_ADDITIONAL_LIBS} SDL2 
     stdc++ ole32 user32 gdi32 dinput8 shell32 setupapi advapi32 uuid version oleaut32 ole32 imm32 winmm gdi32 user32 m)
 else()
     target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} SDL2)
