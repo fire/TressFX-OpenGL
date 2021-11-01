@@ -26,7 +26,7 @@ jobs:
       with:
         type: 'zip'
         filename: TressFX-windows
-        directory: build-linux/package
+        directory: build-windows/package
         path: .
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
