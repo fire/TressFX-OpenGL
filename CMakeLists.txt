@@ -35,7 +35,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isystem \"libs/amd_tressfx/include\"")
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -D DEBUG -O0 -gdwarf-2") # flag for debug
 endif()
-
+target_compile_options(${PROJECT_NAME} PRIVATE Wl,--start-group)
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows") 
     target_link_libraries(${PROJECT_NAME} ${M_ADDITIONAL_LIBS} SDL2 dl
     stdc++ ole32 user32 gdi32 dinput8 shell32 setupapi advapi32 uuid version oleaut32 ole32 imm32 winmm gdi32 user32 m)
